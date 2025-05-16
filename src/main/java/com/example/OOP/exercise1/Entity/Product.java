@@ -2,6 +2,7 @@ package com.example.OOP.exercise1.Entity;
 
 import jakarta.persistence.*;
 
+//Entity structure
 @Entity
 @Table(name = "Products")
 public class Product {
