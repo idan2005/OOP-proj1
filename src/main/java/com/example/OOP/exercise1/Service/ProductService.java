@@ -12,17 +12,20 @@ public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
-
+    //creating a new product
     public Product createProduct(Product product){
         return productRepository.save(product);
     }
+    // retrieving all products
     public List<Product> getAllProducts(){
         return productRepository.findAll();
     }
+    //finding an existing product using its id
     public Product getProductById(Long id){
         return productRepository.findById(id).orElseThrow(() ->
                 new RuntimeException("Product not found"));
     }
+    //updating an existing product
     public void updateProduct(Long id, Product productDetails){
         Product product = getProductById(id);
         product.setName(productDetails.getName());
@@ -32,7 +35,15 @@ public class ProductService {
 
         productRepository.save(product);
     }
+    //deleting an existing product
     public void deleteProduct(Long id){
         productRepository.deleteById(id);
+    }
+    public List<Product> searchByName(String name) {
+        return productRepository.findByNameContaining(name);
+    }
+
+    public List<Product> filterByPrice(Double maxPrice) {
+        return productRepository.findByPriceLessThan(maxPrice);
     }
 }
