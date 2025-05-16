@@ -39,10 +39,11 @@ public class ProductService {
     public void deleteProduct(Long id){
         productRepository.deleteById(id);
     }
+
+    //filter methods
     public List<Product> searchByName(String name) {
         return productRepository.findByNameContaining(name);
     }
-
     public List<Product> filterByPrice(Double maxPrice) {
         return productRepository.findByPriceLessThan(maxPrice);
     }
